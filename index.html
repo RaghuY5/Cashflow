@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashFlow - Income & Expense Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="background-globes">
+        <div class="globe globe-1"></div>
+        <div class="globe globe-2"></div>
+        <div class="globe globe-3"></div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>CashFlow</h1>
+            <p>Master your finances</p>
+        </header>
+
+        <div class="dashboard-container">
+            <div class="balance-card">
+                <h2>Balance</h2>
+                <h1 id="balance">Rs 0.00</h1>
+            </div>
+
+            <div class="inc-exp-container">
+                <div class="money-card income">
+                    <h4>Income</h4>
+                    <p id="money-plus" class="money plus">+Rs 0.00</p>
+                </div>
+                <div class="money-card expense">
+                    <h4>Expense</h4>
+                    <p id="money-minus" class="money minus">-Rs 0.00</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="add-transaction-section">
+                <h3>Add New Transaction</h3>
+                <form id="form">
+                    <div class="form-control">
+                        <label for="text">Description</label>
+                        <input type="text" id="text" placeholder="Enter text..." />
+                    </div>
+
+                    <div class="form-control">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" placeholder="Enter amount..." />
+                    </div>
+
+                    <div class="form-control toggle-control">
+                        <label>Transaction Type</label>
+                        <div class="toggle-switch">
+                            <input type="radio" id="type-income" name="type" value="income" checked>
+                            <label for="type-income" class="toggle-label income-label">Income</label>
+
+                            <input type="radio" id="type-expense" name="type" value="expense">
+                            <label for="type-expense" class="toggle-label expense-label">Expense</label>
+
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+
+                    <button class="btn">Add Transaction</button>
+                </form>
+            </div>
+
+            <div class="history-section">
+                <h3>History</h3>
+                <button id="toggle-history-btn" class="btn-toggle">Show History</button>
+                <ul id="list" class="list hidden">
+                    <!-- Transactions will be added here dynamically -->
+                    <!-- Example item: <li class="minus">Cash <span>-$400</span><button class="delete-btn">x</button></li> -->
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

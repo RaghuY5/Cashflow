@@ -1,0 +1,447 @@
+:root {
+    --bg-color: #0f172a;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    --accent-income: #2ecc71;
+    --accent-expense: #e74c3c;
+    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --card-radius: 20px;
+    --font-main: 'Outfit', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    padding: 20px;
+}
+
+/* Background Animation */
+.background-globes {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.globe {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+.globe-1 {
+    width: 400px;
+    height: 400px;
+    background: #764ba2;
+    top: -100px;
+    left: -100px;
+    animation: float 10s infinite alternate;
+}
+
+.globe-2 {
+    width: 300px;
+    height: 300px;
+    background: #667eea;
+    bottom: -50px;
+    right: -50px;
+    animation: float 12s infinite alternate-reverse;
+}
+
+.globe-3 {
+    width: 200px;
+    height: 200px;
+    background: #ec4899;
+    top: 40%;
+    left: 60%;
+    animation: float 15s infinite alternate;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(30px, 50px);
+    }
+}
+
+/* Main Container */
+.container {
+    width: 100%;
+    max-width: 900px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--card-radius);
+    padding: 40px;
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    animation: slideIn 0.8s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+header {
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Dashboard */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.balance-card {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.balance-card h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.balance-card h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.inc-exp-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.money-card {
+    flex: 1;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.money-card:hover {
+    transform: translateY(-5px);
+}
+
+.money-card h4 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 5px;
+}
+
+.money {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.money.plus {
+    color: var(--accent-income);
+}
+
+.money.minus {
+    color: var(--accent-expense);
+}
+
+/* Content Grid (History + Form) */
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+h3 {
+    border-bottom: 1px solid var(--glass-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* History List */
+.list {
+    list-style-type: none;
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Scrollbar Styling */
+.list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.list li {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.transaction-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.transaction-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+
+}
+
+.list li:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.list li.plus {
+    border-right: 5px solid var(--accent-income);
+}
+
+.list li.minus {
+    border-right: 5px solid var(--accent-expense);
+}
+
+.delete-btn {
+    cursor: pointer;
+    background-color: #e74c3c;
+    border: 0;
+    color: #fff;
+    font-size: 14px;
+    line-height: 14px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    position: absolute;
+    top: 50%;
+    right: -30px;
+    /* Hidden initially */
+    transform: translate(0, -50%);
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.list li:hover .delete-btn {
+    opacity: 1;
+    right: 15px;
+    /* Slides in */
+}
+
+/* Form */
+.form-control {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+input[type="text"],
+input[type="number"] {
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: block;
+    font-family: var(--font-main);
+    font-size: 1rem;
+    padding: 12px 15px;
+    width: 100%;
+    color: var(--text-primary);
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    border-color: #667eea;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    display: flex;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    position: relative;
+    padding: 4px;
+    border: 1px solid var(--glass-border);
+    cursor: pointer;
+}
+
+.toggle-switch input[type="radio"] {
+    display: none;
+}
+
+.toggle-label {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    z-index: 2;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+    margin-bottom: 0;
+    /* Override default label margin */
+}
+
+.toggle-slider {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(50% - 4px);
+    height: calc(100% - 8px);
+    border-radius: 8px;
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 1;
+}
+
+/* Toggle Logic */
+#type-income:checked~.toggle-slider {
+    background: var(--accent-income);
+    left: 4px;
+}
+
+#type-expense:checked~.toggle-slider {
+    background: var(--accent-expense);
+    left: 50%;
+}
+
+#type-income:checked+.income-label {
+    color: white;
+}
+
+#type-expense:checked+.expense-label {
+    color: white;
+}
+
+.btn {
+    cursor: pointer;
+    background: var(--primary-gradient);
+    box-shadow: 0 4px 15px rgba(118, 75, 162, 0.4);
+    border: 0;
+    display: block;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 15px;
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: var(--font-main);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(118, 75, 162, 0.6);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.hidden {
+    display: none;
+}
+
+.btn-toggle {
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-secondary);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.btn-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
